@@ -48,8 +48,8 @@ public class GroceryListManager {
     public double calculateTotalCost(){
         double total = 0;
 
-        for (double cost : groceryList.values()) {
-            total += cost;
+        for (String item : groceryList.keySet()) {
+            total += groceryList.get(item) * quantities.get(item);
         }
 
         return total;
@@ -71,14 +71,28 @@ public class GroceryListManager {
         manager.addItem("Apple", 2,"Fruits", 5);
         manager.addItem("Milk", 2, "Dairy", 7);
         manager.addItem("Bread", 2,"Backery", 11);
+        manager.addItem("Banana", 2, "Fruits", 4);
 
-        System.out.println("Grocery List:");
-        manager.displayList();
+        System.out.println("Total cost:");
+        System.out.println(manager.calculateTotalCost() + " €");
 
         System.out.println();
-        manager.updateQuantity("Milk", 4);
+        manager.displayByCategory("Fruits");
 
+        System.out.println();
         System.out.println("Available Items:");
         manager.displayAvailableItems();
+
+        System.out.println();
+        System.out.println("Updating Apple quantity to 10...");
+        manager.updateQuantity("Apple", 10);
+
+        System.out.println();
+        System.out.println("Updated available items:");
+        manager.displayAvailableItems();
+
+        System.out.println();
+        System.out.println("Updated total cost:");
+        System.out.println(manager.calculateTotalCost() + " €");
     }
 }
