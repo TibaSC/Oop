@@ -4,16 +4,33 @@ import java.util.Map;
 public class GroceryListManager {
     private HashMap<String, Double> groceryList= new HashMap<>();
     private HashMap<String, String> categories = new HashMap<>();
+    private HashMap<String, Integer> quantities = new HashMap<>();
 
-    public void addItem(String item, double cost, String category){
+
+    public void addItem(String item, double cost, String category, int quantity){
         groceryList.put(item, cost);
         categories.put(item, category);
+        quantities.put(item, quantity);
+    }
 
+    public void updateQuantity(String item, int newQuantity) {
+        if (quantities.containsKey(item)) {
+            quantities.put(item, newQuantity);
+        }
+    }
+
+    public void displayAvailableItems() {
+        for (String item : quantities.keySet()) {
+            if (quantities.get(item) > 0) {
+                System.out.println(item + " - Quantity: " + quantities.get(item));
+            }
+        }
     }
 
     public void removeItem(String item){
         groceryList.remove(item);
         categories.remove(item);
+        quantities.remove(item);
 
         System.out.println("Removing \""+item+"\" from the list...");
     }
@@ -21,7 +38,7 @@ public class GroceryListManager {
     public void displayList()
     {
         for (String item : groceryList.keySet()){
-            System.out.println(item + " - " + groceryList.get(item) + " € - " + categories.get(item));
+            System.out.println(item + " - " + groceryList.get(item) + " € - " + categories.get(item)+ " - Quantity: " + quantities.get(item));
         }
     }
     public void checkItem(String item){
@@ -51,17 +68,17 @@ public class GroceryListManager {
     public static void main(String[] args){
         GroceryListManager manager= new GroceryListManager();
 
-        manager.addItem("Apple", 2,"Fruits");
-        manager.addItem("Milk", 2, "Dairy");
-        manager.addItem("Bread", 2,"Backery");
+        manager.addItem("Apple", 2,"Fruits", 5);
+        manager.addItem("Milk", 2, "Dairy", 7);
+        manager.addItem("Bread", 2,"Backery", 11);
 
         System.out.println("Grocery List:");
         manager.displayList();
 
         System.out.println();
-        manager.displayByCategory("Fruits");
+        manager.updateQuantity("Milk", 4);
 
-        System.out.println();
-        System.out.println("Total cost: " + manager.calculateTotalCost() + " €");
+        System.out.println("Available Items:");
+        manager.displayAvailableItems();
     }
 }
