@@ -16,5 +16,15 @@ public class Main {
         System.out.println();
         System.out.println("Books by Author \\\"Jane Doe\\\":");
         library.findBooksByAuthor("Jane Doe");
+
+        System.out.println();
+        library.borrowBook("Introduction to Java Programming");
+        System.out.println();
+        library.displayBooks();
+
+        System.out.println();
+        library.returnBook(book1);
+        System.out.println();
+        library.displayBooks();
     }
 }

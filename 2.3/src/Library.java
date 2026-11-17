@@ -6,14 +6,15 @@ public class Library {
     public void addBook(Book book){
         books.add(book);
     }
-    int i= 1;
     public void displayBooks(){
+        int i= 1;
         for (Book book: books){
             System.out.println(i + ". Title: \"" + book.getTitle()
                     + "\", Author: \"" + book.getAuthor()
                     + "\", Year: " + book.getPubYear());
             i++;
         }
+        i= 1;
     }
 
     public void findBooksByAuthor(String author){
@@ -24,5 +25,22 @@ public class Library {
             }
         }
     }
+
+    public void borrowBook(String title){
+        for (Book book : books) {
+            if (book.getTitle().equalsIgnoreCase(title)) {
+                books.remove(book);
+                System.out.println(title + " has been borrowed.");
+                return;
+            }
+        }
+        System.out.println(title + " is not available.");
+    }
+
+    public void returnBook(Book book){
+        books.add(book);
+        System.out.println(book.getTitle() + " has been returned.");
+    }
+
 
 }
