@@ -10,6 +10,15 @@ public class Main {
         library.addBook(book2);
         library.addBook(book3);
 
+        book1.setRating(4.5);
+        book2.setRating(5.0);
+        book3.setRating(3.5);
+
+        book1.addReview("Very interesting");
+        book2.addReview("Very useful");
+        book2.addReview("I recommend it");
+        book3.addReview("Good story");
+
         System.out.println("Library Catalog:");
         library.displayBooks();
         
@@ -27,5 +36,9 @@ public class Main {
         library.displayBooks();
 
         System.out.println("\n"+library.isBookAvailable("Introduction to Java Programming"));
+
+        System.out.println("\nAverage rating: " + library.getAverageBookRating());
+        Book mostReviewed = library.getMostReviewedBook();
+        System.out.println("\nMost reviewed book: " + mostReviewed.getTitle());
     }
 }

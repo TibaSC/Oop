@@ -1,9 +1,12 @@
+import java.util.ArrayList;
+
 public class Book {
     private String title;
     private String author;
     private int pubYear;
     private double rating;
-    private String review;
+    private ArrayList<String> reviews = new ArrayList<>();
+
 
     public Book(String title, String author, int pubYear){
         this.title= title;
@@ -24,7 +27,13 @@ public class Book {
     public void setRating(double rating){
          this.rating = rating;
     }
+    public double getRating() {
+        return rating;
+    }
     public void addReview(String review){
-        this.review= review;
+        reviews.add(review);
+    }
+    public int getReviewCount() {
+        return reviews.size();
     }
 }
