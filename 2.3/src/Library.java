@@ -42,5 +42,15 @@ public class Library {
         System.out.println(book.getTitle() + " has been returned.");
     }
 
+    public boolean isBookAvailable(String title){
+        for (Book book : books) {
+            if (book.getTitle().equalsIgnoreCase(title)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 
 }

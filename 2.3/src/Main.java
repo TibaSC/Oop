@@ -12,9 +12,8 @@ public class Main {
 
         System.out.println("Library Catalog:");
         library.displayBooks();
-
-        System.out.println();
-        System.out.println("Books by Author \\\"Jane Doe\\\":");
+        
+        System.out.println("\nBooks by Author \\\"Jane Doe\\\":");
         library.findBooksByAuthor("Jane Doe");
 
         System.out.println();
@@ -26,5 +25,7 @@ public class Main {
         library.returnBook(book1);
         System.out.println();
         library.displayBooks();
+
+        System.out.println("\n"+library.isBookAvailable("Introduction to Java Programming"));
     }
 }
