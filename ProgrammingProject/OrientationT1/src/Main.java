@@ -1,23 +1,43 @@
+import java.util.LinkedList;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args){
-        Customer customer1 = new Customer();
-        Customer customer2 = new Customer();
+        LinkedList<Customer> queue = new LinkedList<>();
+        Scanner reader = new Scanner(System.in);
 
-        customer1.setStartTime(1000);
-        customer1.setEndTime(5000);
-        customer2.setStartTime(2000);
-        customer2.setEndTime(8000);
+        boolean running = true;
+        while (running){
+            System.out.println("\n1. Queue a customer");
+            System.out.println("2. Dequeue a customer");
+            System.out.println("3. Exit");
+            System.out.print("Choose an action: ");
 
-        System.out.println("Customer ID:" + customer1.getId());
-        System.out.println("Start time: " + customer1.getStartTime());
-        System.out.println("End time: " + customer1.getEndTime());
-        System.out.println("Time spent: " + customer1.getTimeSpent());
+            int choice= reader.nextInt();
+            switch(choice){
+                case 1:
+                    Customer customer= new Customer();
+                    customer.setStartTime();
+                    queue.addFirst(customer);
 
-        System.out.println();
+                    System.out.println("Customer "+ customer.getId()+ " added to the queue.");
+                    break;
 
-        System.out.println("Customer ID: " + customer2.getId());
-        System.out.println("Start time: " + customer2.getStartTime());
-        System.out.println("End time: " + customer2.getEndTime());
-        System.out.println("Time spent: " + customer2.getTimeSpent());
+                case 2:
+                    Customer removed= queue.removeLast();
+                    removed.setEndTime();
+                    System.out.println("Customer "+ removed.getId()+ " removed from the queue.");
+                    System.out.println("Time spent in queue: "+ removed.getTimeSpent()+ " seconds");
+                    break;
+
+                case 3:
+                    running= false;
+                    break;
+
+                default:
+                    System.out.println("Invalid choice");
+            }
+
+        }
     }
 }

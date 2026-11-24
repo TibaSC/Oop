@@ -13,17 +13,20 @@ public class Customer {
         return id;
     }
 
-    public void setStartTime(long startTime){this.startTime=startTime;}
+    public void setStartTime(){
+        startTime= System.nanoTime();
+    }
     public long getStartTime(){
         return startTime;
     }
 
-    public void setEndTime(long endTime){this.endTime=endTime;}
+    public void setEndTime(){
+        endTime = System.nanoTime();}
     public long getEndTime(){
         return endTime;
     }
 
     public long getTimeSpent() {
-        return endTime - startTime;
+        return (endTime - startTime)/1000000000;
     }
 }
