@@ -1,7 +1,9 @@
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class ServicePoint {
-    LinkedList<Customer> queue= new LinkedList<>();
+    private LinkedList<Customer> queue= new LinkedList<>();
+    private LinkedList<Double> avg= new LinkedList<>();
 
     public void addToQueueue(Customer a){
         queue.addFirst(a);
@@ -21,12 +23,22 @@ public class ServicePoint {
 
             customer.setEndTime();
             double serviceTime =sleeptime/1000.0;
+            avg.add(serviceTime);
             double timeSpent= customer.getTimeSpent();
             double responseTime= serviceTime + timeSpent;
 
             System.out.println("Customer ID: "+ customer.getId());
-            System.out.println("Response time: "+ responseTime);
-            System.out.println(("Time spent in the service: "+ serviceTime));
+            System.out.println("Response time: "+ responseTime + "s");
+            System.out.println("Time spent in the service: "+ serviceTime + "s");
         }
+
+    }
+
+    public void avgServiceTime(double customers){
+        double sum=0;
+        for(double num: avg){
+            sum+= num;
+        }
+        System.out.println("Average service time: "+sum /customers+ "s");
     }
 }
