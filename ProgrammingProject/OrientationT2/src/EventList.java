@@ -16,7 +16,7 @@ public class EventList {
 
         while (!copy.isEmpty()) {
             Event event = copy.poll();
-            System.out.println(event.getEventTime());
+            System.out.println(event.getEventTime()+ ", "+ event.getEventType());
         }
     }
 }
